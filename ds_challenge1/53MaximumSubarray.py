@@ -1,4 +1,5 @@
 from typing import List
+##do dp ##
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         def cross_max_subarrays(nums,p,q,r):
