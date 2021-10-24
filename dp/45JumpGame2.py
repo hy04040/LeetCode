@@ -1,18 +1,23 @@
 from typing import List
 
-class Solution:
-    def jump(self, nums: List[int]) -> int:
-        jumped = idx = cur_idx = 0;
+class Solution(object):
+    def jump(self, nums):
+        dp = [-1]*len(nums)
+        dp[0] = 0
+        curr_idx = jump = 0
+        if len(nums) == 1:
+            return 0
         for i in range(0,len(nums)):
-            idx = max(idx, i+nums[i])
-            if i == cur_idx:
-                cur_idx = idx;
-                jumped += 1
-        return jumped
-        
+            for j in range(1,nums[i]+1):
+                if len(nums)-1 <= i+j:
+                    return dp[i]+1
+                if dp[i+j] == -1:
+                    dp[i+j] = dp[i] + 1
+
+
+
 sol = Solution()
-fp = open("input.txt", "r")
-string = fp.readlines()
-nums = list(map(int, string[0].split(",")))
+nums = [1]
 answer = sol.jump(nums)
 print(answer)
+ 
