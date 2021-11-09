@@ -1,5 +1,5 @@
 from typing import List
-
+##better dp##
 class Solution(object):
     def canJump(self, nums):
         reachable = [False]*len(nums)
@@ -10,7 +10,8 @@ class Solution(object):
                 if last_idx <= i + nums[i]:
                     return True
                 for idx in range(1,nums[i]+1):
-                    reachable[i+idx] = True
+                    if reachable[i+idx] == False:
+                        reachable[i+idx] = True
         return False
 
         
