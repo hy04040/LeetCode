@@ -1,22 +1,20 @@
 class Solution(object):
     def letterCombinations(self, digits):
-        n = len(digits)
-        if n == 0:
+        if len(digits) == 0:
             return []
-        table = dic = {"2":["a","b","c"], "3":["d","e","f"], "4":["g","h","i"], "5":["j","k","l"], "6":["m","n","o"], "7":["p","q","r","s"], "8": ["t","u","v"], "9":["w","x","y","z"]}
-        def add_char(digits, idx, result, table):
-            if idx == len(digits):
+        table = {"2":["a","b","c"], "3":["d","e","f"], "4":["g","h","i"], "5":["j","k","l"], "6":["m","n","o"], "7":["p","q","r","s"], "8": ["t","u","v"], "9":["w","x","y","z"]}
+        def combination(i,result):
+            if i == len(digits):
                 return result
-            key = digits[idx]
             res = []
-            if idx == 0:
-                res = table[key]
+            if i == 0:
+                res = table[digits[i]]
             else:
-                for i in range(0, len(result)):
-                    for j in range(0, len(table[key])):
-                        res.append(result[i]+table[key][j])
-            return add_char(digits, idx+1, res, table)
-        ans = add_char(digits, 0, [], table)
+                for n in result:
+                    for num in table[digits[i]]:
+                        res.append(n+num)
+            return combination(i+1, res)
+        ans = combination(0, [])
         return ans
 
 
@@ -48,4 +46,25 @@ class Solution(object):
                     for j in range(0, len(table[int(val)])):
                         dp[idx].append(dp[idx-1][i] + table[int(val)][j])
         return dp[-1]
+
+class Solution(object):
+    def letterCombinations(self, digits):
+        n = len(digits)
+        if n == 0:
+            return []
+        table = dic = {"2":["a","b","c"], "3":["d","e","f"], "4":["g","h","i"], "5":["j","k","l"], "6":["m","n","o"], "7":["p","q","r","s"], "8": ["t","u","v"], "9":["w","x","y","z"]}
+        def add_char(digits, idx, result, table):
+            if idx == len(digits):
+                return result
+            key = digits[idx]
+            res = []
+            if idx == 0:
+                res = table[key]
+            else:
+                for i in range(0, len(result)):
+                    for j in range(0, len(table[key])):
+                        res.append(result[i]+table[key][j])
+            return add_char(digits, idx+1, res, table)
+        ans = add_char(digits, 0, [], table)
+        return ans
 
