@@ -29,8 +29,8 @@ class Solution(object):
         return False
         
         
-        
 board = [["A","B","C","E"],["S","F","E","S"],["A","D","E","E"]]
 word = "ABCESEEEFS"
 sol = Solution()
 print(sol.exist(board, word))
+
